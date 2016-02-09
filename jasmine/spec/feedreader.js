@@ -55,13 +55,13 @@ $(function () {
 
         var menuIcon = $('.menu-icon-link');
 
-        
+
         it('hides when the menu icon is clicked', function () {
-            expect(body.hasClass("menu-hidden")).toBe(true);
+            expect(body.hasClass("menu-hidden")).toBeTruthy();
             menuIcon.click();
-            expect(body.hasClass("menu-hidden")).toBe(false);
+            expect(body.hasClass("menu-hidden")).toBeFalsy();
             menuIcon.click();
-            expect(body.hasClass("menu-hidden")).toBe(true);
+            expect(body.hasClass("menu-hidden")).toBeTruthy();
         });
 
     });
@@ -75,11 +75,9 @@ $(function () {
         });
 
         // check the entries have been loaded
-        it('have loaded', function (done) {
+        it('have loaded', function () {
             var entries = $('.entry');
-            expect(entries).toBeDefined();
             expect(entries.length).toBeGreaterThan(0);
-            done();
         });
     });
 
@@ -97,18 +95,10 @@ $(function () {
             });
         });
 
-        it('is replacing previous content', function (done) {
-            // check out of bounds issues
-            expect(allFeeds[0]).toBeDefined();
-            expect(allFeeds[1]).toBeDefined();
+        it('is replacing previous content', function () {
 
-            // check that dom elements have been populated
-            expect(firstEntries).toBeDefined();
-            expect(secondEntries).toBeDefined();
-
-            // chech that the list of entries are not identical
-            expect(firstEntries.contents()).not.toBe(secondEntries.contents());
-            done();
+            // check that the list of entries are not identical
+            expect(firstEntries.text()).not.toBe(secondEntries.text());
         });
     });
 
